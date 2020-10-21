@@ -7,12 +7,12 @@ import Constants from 'expo-constants';
 const Logon = () => {
     const navigation = useNavigation();
 
-    function handleNavigateBack(){
-        navigation.goBack();
+    function handleNavigateToInitiation(){
+        navigation.navigate('Initiation');
     }
 
-    function handleNavigateToRegister(){
-        navigation.navigate('Register');
+    function handleNavigateToRecovery(){
+        navigation.navigate('Recovery');
     }
 
     return( 
@@ -21,12 +21,16 @@ const Logon = () => {
             style={styles.background}
         >
             <View style={styles.container}>
-                <TouchableOpacity onPress={handleNavigateBack}>
+                <TouchableOpacity onPress={handleNavigateToInitiation}>
                     <Left name="left" size={40} color="#000000"
                     style={{marginLeft: '5%'}}/>
                 </TouchableOpacity>
                 <View style={styles.main}>
-                    <Text style={styles.title}>Login</Text>
+                    <Image 
+                        source={require('../../asserts/PNG/Fala.png')}
+                        style={styles.image}
+                    />
+
 
                     <View style={styles.inputs}>
                         <TextInput
@@ -44,8 +48,8 @@ const Logon = () => {
                     <TouchableOpacity style={styles.button} onPress={()=>{}}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={handleNavigateToRegister}>
-                            <Text style={styles.linkText} >Realizar cadastro</Text>
+                    <TouchableOpacity onPress={handleNavigateToRecovery}>
+                            <Text style={styles.linkText} >Esqueci minha senha!</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -73,26 +77,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'center',
     },
-    title: {
-        color: '#000000',
-        fontSize: 32,
-        fontFamily: 'Ubuntu_700Bold',
-        maxWidth: 260,
+
+    image: {
+        resizeMode: "contain",
+        flex: 1,  
+        maxHeight: "25%",
+        maxWidth: "94%"
     },
 
     inputs: {
-        marginTop: '20%'
+        marginTop: '10%'
     },
 
     input: {
         height: 50,
         borderBottomWidth: 1,
-        paddingHorizontal: '39%',
+        marginHorizontal: '-45%',
         margin: 14,
         borderBottomColor: '#8DA1B9',
         paddingLeft: 6,
         fontSize: 20,
     },
+
+    
     
     button: {
         backgroundColor: '#0B6E4F',

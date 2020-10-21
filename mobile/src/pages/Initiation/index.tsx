@@ -36,8 +36,6 @@ const Initiation = () => {
                 <TouchableOpacity onPress={handleNavigateToRegister}>
                         <Text style={styles.linkText} >Deseja realizar cadastro?</Text>
                 </TouchableOpacity>
-
-
             </View>
         </ImageBackground >
     );

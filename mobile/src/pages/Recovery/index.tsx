@@ -4,15 +4,11 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign as Left } from '@expo/vector-icons'; 
 import Constants from 'expo-constants';
 
-const Register = () => {
+const Recovery = () => {
     const navigation = useNavigation();
 
-    function handleNavigateToInitiation(){
-        navigation.navigate('Initiation');
-    }
-
-    function handleNavigateToLogon(){
-        navigation.navigate('Logon');
+    function handleNavigateToBack(){
+        navigation.goBack();
     }
 
     return( 
@@ -21,7 +17,7 @@ const Register = () => {
             style={styles.background}
         >
             <View style={styles.container}>
-                <TouchableOpacity onPress={handleNavigateToInitiation}>
+                <TouchableOpacity onPress={handleNavigateToBack}>
                     <Left name="left" size={40} color="#000000"
                     style={{marginLeft: '5%'}}/>
                 </TouchableOpacity>
@@ -30,43 +26,29 @@ const Register = () => {
                         source={require('../../asserts/PNG/Fala.png')}
                         style={styles.image}
                     />
+                    <Text style={styles.description}>
+                        Será enviado um email com o link para que seja possível alterar a senha! 
+                    </Text>
 
-                    <View style={styles.inputs}>
-                        <TextInput
-                            style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
-                            placeholder="Digite seu nome"
-                        />
+                    <View>
                         <TextInput
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite seu e-mail"
                         />
-                         <TextInput
-                            style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
-                            placeholder="Digite sua senha"
-                        />
-                        <TextInput
-                            style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
-                            placeholder="Confirme sua senha"
-                        />
                     </View>
                     
                     <TouchableOpacity style={styles.button} onPress={()=>{}}>
-                        <Text style={styles.buttonText}>Continuar</Text>
+                        <Text style={styles.buttonText}>Recuperar Senha</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={handleNavigateToLogon}>
-                            <Text style={styles.linkText} >Acessar sua conta</Text>
-                    </TouchableOpacity>
+                    
                 </View>
             </View>
         </ImageBackground >
     );
 };
 
-export default Register;
+export default Recovery;
 
 const styles = StyleSheet.create({
    
@@ -93,45 +75,41 @@ const styles = StyleSheet.create({
         maxHeight: "25%",
         maxWidth: "94%"
     },
-
-    inputs: {
-        marginTop: '5%'
+    
+    description: {
+        marginTop: '20%',
+        maxWidth: '85%',
+        lineHeight: 20,
+        color: '#000000',
+        fontFamily: 'Roboto_400Regular',
+        fontSize: 18,
     },
-
     input: {
+        marginTop: '15%',
         height: 50,
         borderBottomWidth: 1,
         marginHorizontal: '-45%',
-        margin: 7,
         borderBottomColor: '#8DA1B9',
-        paddingLeft: 2,
+        paddingLeft: 6,
         fontSize: 20,
-        
     },
-    
+
     button: {
+        
         backgroundColor: '#0B6E4F',
         height: 60,
         width: '80%',
         borderRadius: 20,
         alignItems: 'center',
-        marginTop: '6%',
+        marginTop: '16%',
         justifyContent: 'center',
-        
+        marginBottom: '15%'
     },
   
     buttonText: {
         color: '#FFF',
         fontFamily: 'Roboto_500Medium',
         fontSize: 21,
-        
-    },
-    linkText: {
-        color: '#5B7D6C',
-        fontFamily: 'Roboto_500Medium',
-        fontSize: 16,
-        marginTop: '5%',
-        marginBottom: '10%'
     }
 });
 
