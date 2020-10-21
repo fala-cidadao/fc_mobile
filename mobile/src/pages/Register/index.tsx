@@ -4,15 +4,15 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign as Left } from '@expo/vector-icons'; 
 import Constants from 'expo-constants';
 
-const Logon = () => {
+const Register = () => {
     const navigation = useNavigation();
 
     function handleNavigateToInitiation(){
         navigation.navigate('Initiation');
     }
 
-    function handleNavigateToRecovery(){
-        navigation.navigate('Recovery');
+    function handleNavigateToLogon(){
+        navigation.navigate('Logon');
     }
 
     return( 
@@ -31,25 +31,34 @@ const Logon = () => {
                         style={styles.image}
                     />
 
-
                     <View style={styles.inputs}>
+                        <TextInput
+                            style={styles.input}
+                            placeholderTextColor =  "#8DA1B9"
+                            placeholder="Digite seu nome"
+                        />
                         <TextInput
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite seu e-mail"
                         />
-                        <TextInput
+                         <TextInput
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite sua senha"
+                        />
+                        <TextInput
+                            style={styles.input}
+                            placeholderTextColor =  "#8DA1B9"
+                            placeholder="Confirme sua senha"
                         />
                     </View>
                     
                     <TouchableOpacity style={styles.button} onPress={()=>{}}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={handleNavigateToRecovery}>
-                            <Text style={styles.linkText} >Esqueci minha senha!</Text>
+                    <TouchableOpacity onPress={handleNavigateToLogon}>
+                            <Text style={styles.linkText} >Acessar sua conta</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -57,7 +66,7 @@ const Logon = () => {
     );
 };
 
-export default Logon;
+export default Register;
 
 const styles = StyleSheet.create({
    
@@ -86,20 +95,19 @@ const styles = StyleSheet.create({
     },
 
     inputs: {
-        marginTop: '10%'
+        marginTop: '5%'
     },
 
     input: {
         height: 50,
         borderBottomWidth: 1,
         marginHorizontal: '-45%',
-        margin: 14,
+        margin: 7,
         borderBottomColor: '#8DA1B9',
-        paddingLeft: 6,
+        paddingLeft: 2,
         fontSize: 20,
+        
     },
-
-    
     
     button: {
         backgroundColor: '#0B6E4F',
@@ -107,7 +115,7 @@ const styles = StyleSheet.create({
         width: '80%',
         borderRadius: 20,
         alignItems: 'center',
-        marginTop: '16%',
+        marginTop: '6%',
         justifyContent: 'center',
         
     },
@@ -122,7 +130,8 @@ const styles = StyleSheet.create({
         color: '#5B7D6C',
         fontFamily: 'Roboto_500Medium',
         fontSize: 16,
-        marginTop: '8%',
+        marginTop: '5%',
+        marginBottom: '10%'
     }
 });
 
