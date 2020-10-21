@@ -1,8 +1,19 @@
 import React from "react";
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 
 const Initiation = () => {
+    const navigation = useNavigation();
+
+    function handleNavigateToLogon(){
+        navigation.navigate('Logon');
+    }
+
+    function handleNavigateToRegister(){
+        navigation.navigate('Register');
+    }
+
     return( 
         <ImageBackground 
             source={require('../../asserts/PNG/Background.png')} 
@@ -18,11 +29,11 @@ const Initiation = () => {
                     <Text style={styles.title}>Seja bem-vindo! </Text>
                     <Text style={styles.description}>Faça sua voz ser ouvida e vamos em busca de uma cidade melhor!</Text>
                 </View>
-                <TouchableOpacity style={styles.button} onPress={()=> {}}>
+                <TouchableOpacity style={styles.button} onPress={handleNavigateToLogon}>
                     <Text style={styles.buttonText}>Acessar Conta</Text>
                 </TouchableOpacity>
                 
-                <TouchableOpacity onPress={()=> {}}>
+                <TouchableOpacity onPress={handleNavigateToRegister}>
                         <Text style={styles.linkText} >Deseja realizar cadastro?</Text>
                 </TouchableOpacity>
 
@@ -56,7 +67,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        color: '#322153',
+        color: '#000000',
         fontSize: 32,
         fontFamily: 'Ubuntu_700Bold',
         maxWidth: 260,
