@@ -1,11 +1,22 @@
-import React from "react";
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput} from "react-native";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput, Alert} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign as Left } from '@expo/vector-icons'; 
 import Constants from 'expo-constants';
 
+import { UserDto } from "../../interfaces/UserDto.interface";
+import { useAuth } from '../../contexts/authContext';
+import { ValidateEmailRegex } from '../../utils/utils';
+
 const Register = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
     const navigation = useNavigation();
+
+    const { signUp } = useAuth();
 
     function handleNavigateToInitiation(){
         navigation.navigate('Initiation');
@@ -14,6 +25,41 @@ const Register = () => {
     function handleNavigateToLogon(){
         navigation.navigate('Logon');
     }
+
+    const validateSubmit = () => {
+        if (!ValidateEmailRegex(email)) {
+            Alert.alert('Invalid Email', '', [{ text: 'Ok' }]);
+            return false;
+        };
+
+        if (password !== confirmPassword) {
+            Alert.alert('Passwords do not match', '', [{ text: 'Ok' }]);
+            return false;
+        };
+
+        return true;
+    };
+
+    const onSubmit = async () => {
+        const signUpRequest: UserDto = {
+            name,
+            email,
+            password,
+            phone: '123123',
+            role: 'admin'
+        };
+
+        try {
+            if (validateSubmit()) {
+                await signUp(signUpRequest);
+                navigation.navigate('Logon');
+            }
+            else return;
+        } catch (error) {
+            console.log(error);
+            Alert.alert(error.message, '', [{ text: 'Ok' }]);
+        };
+    };
 
     return( 
         <ImageBackground 
@@ -36,25 +82,35 @@ const Register = () => {
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite seu nome"
+                            value={name}
+                            onChangeText={setName}
                         />
                         <TextInput
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite seu e-mail"
+                            value={email}
+                            onChangeText={setEmail}
                         />
                          <TextInput
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite sua senha"
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry
                         />
                         <TextInput
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Confirme sua senha"
+                            value={confirmPassword}
+                            onChangeText={setConfirmPassword}
+                            secureTextEntry
                         />
                     </View>
                     
-                    <TouchableOpacity style={styles.button} onPress={()=>{}}>
+                    <TouchableOpacity style={styles.button} onPress={onSubmit}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleNavigateToLogon}>

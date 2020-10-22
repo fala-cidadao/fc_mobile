@@ -1,12 +1,17 @@
-import React from "react";
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput} from "react-native";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput, Alert} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign as Left } from '@expo/vector-icons'; 
 import Constants from 'expo-constants';
 
+import { LoginDto } from "../../interfaces/LoginDto.interface";
 import { useAuth } from '../../contexts/authContext';
+import { ValidateEmailRegex } from '../../utils/utils';
 
 const Logon = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const navigation = useNavigation();
 
     const { user, signIn } = useAuth();
@@ -18,6 +23,20 @@ const Logon = () => {
     function handleNavigateToRecovery(){
         navigation.navigate('Recovery');
     }
+
+    const onSubmit = async () => {
+        if (!ValidateEmailRegex(email)) {
+            Alert.alert('Invalid Email', '', [{ text: 'Ok' }]);
+            return;
+        };
+
+        const signInRequest: LoginDto = {
+            email,
+            password
+        };
+
+        await signIn(signInRequest);
+    };
 
     return( 
         <ImageBackground 
@@ -41,15 +60,20 @@ const Logon = () => {
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite seu e-mail"
+                            value={email}
+                            onChangeText={setEmail}
                         />
                         <TextInput
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite sua senha"
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry
                         />
                     </View>
                     
-                    <TouchableOpacity style={styles.button} onPress={() => signIn({ email: 'matheusz_7@hotmail.com', password: '123' })}>
+                    <TouchableOpacity style={styles.button} onPress={onSubmit}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleNavigateToRecovery}>
@@ -129,4 +153,3 @@ const styles = StyleSheet.create({
         marginTop: '8%',
     }
 });
-
