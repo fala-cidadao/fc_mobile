@@ -4,8 +4,12 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign as Left } from '@expo/vector-icons'; 
 import Constants from 'expo-constants';
 
+import { useAuth } from '../../contexts/authContext';
+
 const Logon = () => {
     const navigation = useNavigation();
+
+    const { user, signIn } = useAuth();
 
     function handleNavigateToInitiation(){
         navigation.navigate('Initiation');
@@ -45,7 +49,7 @@ const Logon = () => {
                         />
                     </View>
                     
-                    <TouchableOpacity style={styles.button} onPress={()=>{}}>
+                    <TouchableOpacity style={styles.button} onPress={() => signIn({ email: 'matheusz_7@hotmail.com', password: '123' })}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleNavigateToRecovery}>
