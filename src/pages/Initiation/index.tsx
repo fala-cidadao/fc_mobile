@@ -2,6 +2,8 @@ import React from "react";
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import BackgroundImg from '../../asserts/PNG/Background.png';
+import Logo from '../../asserts/PNG/Fala.png';
 
 const Initiation = () => {
     const navigation = useNavigation();
@@ -16,13 +18,13 @@ const Initiation = () => {
 
     return( 
         <ImageBackground 
-            source={require('../../asserts/PNG/Background.png')} 
+            source={BackgroundImg} 
             style={styles.container}
             
         >
             <View style={styles.main}>
                 <Image 
-                    source={require('../../asserts/PNG/Fala.png')}
+                    source={Logo}
                     style={styles.image}
                 />
                 <View>
