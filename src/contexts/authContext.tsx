@@ -7,10 +7,14 @@ import { UserDto } from '../interfaces/UserDto.interface';
 
 import api from '../services/api';
 
+/**
+ * @Autor: Matheus Henrique Fernandes Justino
+ */
+
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-    const [user, setUser] = useState<object | null>(null);
+    const [user, setUser] = useState<LoginResponse | null>(null);
     
     const signIn = async (foundUser: LoginDto): Promise<void> => {
         try {
