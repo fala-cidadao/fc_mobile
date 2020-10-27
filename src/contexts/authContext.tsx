@@ -14,63 +14,59 @@ import api from '../services/api';
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-    const [user, setUser] = useState<LoginResponse | null>(null);
-    
-    const signIn = async (foundUser: LoginDto): Promise<void> => {
-        try {
-            const { data } = await api.post<LoginResponse>('/auth/login', foundUser);
+  const [user, setUser] = useState<LoginResponse | null>(null);
 
-            if (!data) {
-                throw Error('Ops... Erro desconhecido');
-            };
+  const signIn = async (foundUser: LoginDto): Promise<void> => {
+    try {
+      const { data } = await api.post<LoginResponse>('/auth/login', foundUser);
 
-            if (data.response && data.response.error) {
-                throw Error(data.message);
-            };
+      if (!data) {
+        throw Error('Ops... Erro desconhecido');
+      }
 
-            Alert.alert('Bem-vindo(a)', data.user.name, [{ text: 'Ok' }]);
+      if (data.response && data.response.error) {
+        throw Error(data.message);
+      }
 
-            setUser(data);
-        } catch (error) {
-            Alert.alert(error.message, '', [
-                { text: 'Ok' }
-            ]);
-        };
-    };
+      Alert.alert('Bem-vindo(a)', data.user.name, [{ text: 'Ok' }]);
 
-    const signUp = async (foundUser: UserDto): Promise<void> => {
-        try {
-            const { data } = await api.post('/users', foundUser);
+      setUser(data);
+    } catch (error) {
+      Alert.alert(error.message, '', [{ text: 'Ok' }]);
+    }
+  };
 
-            Alert.alert('Usuário cadastrado', '', [ { text: 'Ok' }]);
+  const signUp = async (foundUser: UserDto): Promise<void> => {
+    try {
+      const { data } = await api.post('/users', foundUser);
 
-            setUser(data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+      Alert.alert('Usuário cadastrado', '', [{ text: 'Ok' }]);
 
-    const signOut = (): void => {
-        setUser(null);
-    };
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    const authContext = {
-        signed: !!user,
-        user,
-        signIn,
-        signUp,
-        signOut,
-    };
+  const signOut = (): void => {
+    setUser(null);
+  };
 
-    return (
-        <AuthContext.Provider value={authContext}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const authContext = {
+    signed: !!user,
+    user,
+    signIn,
+    signUp,
+    signOut,
+  };
+
+  return (
+    <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>
+  );
 };
 
 export function useAuth() {
-    const context = useContext(AuthContext);
-    
-    return context;
-};
+  const context = useContext(AuthContext);
+
+  return context;
+}
