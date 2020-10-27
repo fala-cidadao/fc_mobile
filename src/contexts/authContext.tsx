@@ -44,6 +44,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       setUser(data);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     }
   };
@@ -60,12 +61,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     signOut,
   };
 
-  return (
-    <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>;
 };
 
-export function useAuth() {
+export function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
 
   return context;

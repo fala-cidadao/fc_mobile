@@ -9,7 +9,7 @@ import Recovery from './pages/Recovery';
 
 const appStack = createStackNavigator();
 
-const Routes = () => (
+const Routes = (): JSX.Element => (
   <NavigationContainer>
     <appStack.Navigator
       headerMode="none"

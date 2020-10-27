@@ -7,7 +7,7 @@ import { Ubuntu_700Bold, useFonts } from '@expo-google-fonts/ubuntu';
 import Routes from './src/routes';
 import { AuthProvider } from './src/contexts/authContext';
 
-export default function App() {
+export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_500Medium,
@@ -21,11 +21,7 @@ export default function App() {
   return (
     <>
       <AuthProvider>
-        <StatusBar
-          barStyle="dark-content"
-          backgroundColor="transparent"
-          translucent
-        />
+        <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
         <Routes />
       </AuthProvider>
     </>
