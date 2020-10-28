@@ -1,5 +1,6 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { FontAwesome } from '@expo/vector-icons';
 
 import Map from '../Map';
 import DrawerContent from '../../components/DrawerContent';
@@ -13,7 +14,8 @@ const Drawer = (): JSX.Element => {
         name="Map" 
         component={Map}
         options={{
-          drawerLabel: "Mapa"
+          drawerLabel: "Mapa",
+          drawerIcon: ({color, size}) => <FontAwesome name="map-marker" size={size} color={color} />
         }} 
       />
     </DrawerNavigator.Navigator>
