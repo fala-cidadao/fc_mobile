@@ -2,8 +2,8 @@ import React from "react";
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import BackgroundImg from '../../asserts/PNG/Background.png';
-import Logo from '../../asserts/PNG/Fala.png';
+import BackgroundImg from '../../assets/PNG/Background.png';
+import Logo from '../../assets/PNG/Fala.png';
 
 const Initiation = () => {
     const navigation = useNavigation();
@@ -109,4 +109,3 @@ const styles = StyleSheet.create({
 
    
 });
-

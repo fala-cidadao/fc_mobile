@@ -13,7 +13,7 @@ const Recovery = () => {
 
     return( 
         <ImageBackground 
-            source={require('../../asserts/PNG/Background.png')} 
+            source={require('../../assets/PNG/Background.png')} 
             style={styles.background}
         >
             <View style={styles.container}>
@@ -23,7 +23,7 @@ const Recovery = () => {
                 </TouchableOpacity>
                 <View style={styles.main}>
                     <Image 
-                        source={require('../../asserts/PNG/Fala.png')}
+                        source={require('../../assets/PNG/Fala.png')}
                         style={styles.image}
                     />
                     <Text style={styles.description}>
@@ -112,4 +112,3 @@ const styles = StyleSheet.create({
         fontSize: 21,
     }
 });
-

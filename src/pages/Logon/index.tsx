@@ -40,7 +40,7 @@ const Logon = () => {
 
     return( 
         <ImageBackground 
-            source={require('../../asserts/PNG/Background.png')} 
+            source={require('../../assets/PNG/Background.png')} 
             style={styles.background}
         >
             <View style={styles.container}>
@@ -50,7 +50,7 @@ const Logon = () => {
                 </TouchableOpacity>
                 <View style={styles.main}>
                     <Image 
-                        source={require('../../asserts/PNG/Fala.png')}
+                        source={require('../../assets/PNG/Fala.png')}
                         style={styles.image}
                     />
 
