@@ -2,7 +2,7 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { FontAwesome } from '@expo/vector-icons';
 
-import Map from '../Map';
+import Map from '../MapMenu';
 import DrawerContent from '../../components/DrawerContent';
 
 const DrawerNavigator = createDrawerNavigator();

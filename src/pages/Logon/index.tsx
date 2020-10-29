@@ -24,6 +24,10 @@ const Logon = () => {
         navigation.navigate('Recovery');
     }
 
+    function handleNavigateToMapMenu(){
+        navigation.navigate('MapMenu');
+    }
+
     const onSubmit = async () => {
         if (!ValidateEmailRegex(email)) {
             Alert.alert('Invalid Email', '', [{ text: 'Ok' }]);
@@ -73,7 +77,7 @@ const Logon = () => {
                         />
                     </View>
                     
-                    <TouchableOpacity style={styles.button} onPress={onSubmit}>
+                    <TouchableOpacity style={styles.button} onPress={handleNavigateToMapMenu}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleNavigateToRecovery}>
