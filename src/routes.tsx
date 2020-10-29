@@ -7,7 +7,6 @@ import Logon from './pages/Logon';
 import Register from './pages/Register';
 import Recovery from './pages/Recovery';
 import Drawer from './pages/Drawer';
-import MapMenu from './pages/MapMenu'
 
 const appStack = createStackNavigator();
 
@@ -26,9 +25,7 @@ const Routes = () => {
                 <appStack.Screen name="Logon" component={Logon}/>
                 <appStack.Screen name="Register" component={Register}/>
                 <appStack.Screen name="Recovery" component={Recovery}/> 
-                <appStack.Screen name="Drawer" component={Drawer}/>
-                <appStack.Screen name="MapMenu" component={MapMenu}/>
-                
+                <appStack.Screen name="Drawer" component={Drawer}/>                
 
             </appStack.Navigator>
 

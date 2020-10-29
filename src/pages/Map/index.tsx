@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { DrawerActions } from '@react-navigation/native';
 
 
-const MapMenu: React.FC = () => {
+const Map: React.FC = () => {
     const navigation = useNavigation();
 
     return(
@@ -51,7 +51,7 @@ const MapMenu: React.FC = () => {
     );
 };
 
-export default MapMenu; 
+export default Map; 
 
 const styles = StyleSheet.create({
     topBar:{

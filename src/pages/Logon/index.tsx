@@ -25,7 +25,7 @@ const Logon = () => {
     }
 
     function handleNavigateToMapMenu(){
-        navigation.navigate('MapMenu');
+        navigation.navigate('Drawer');
     }
 
     const onSubmit = async () => {
