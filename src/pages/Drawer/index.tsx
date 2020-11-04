@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet, Text} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -16,6 +17,7 @@ const DrawerNavigator = createDrawerNavigator();
 const Drawer: React.FC = () => {
   return (
     <DrawerNavigator.Navigator initialRouteName="Map" drawerContent={(props) => <DrawerContent {...props} />}>
+        
         <DrawerNavigator.Screen 
             name="Map" 
             component={Map}
@@ -24,7 +26,7 @@ const Drawer: React.FC = () => {
                 drawerIcon: ({color, size}) => <FontAwesome name="map-marker" size={size} color={color} />,
             }} 
         />
-        <DrawerNavigator.Screen 
+        <DrawerNavigator.Screen
             name="Reclamações próximas"
             component={ComplaintClose} 
         />
@@ -32,20 +34,39 @@ const Drawer: React.FC = () => {
             name="Minhas reclamações"
             component={MyComplaint} 
         />
-        <DrawerNavigator.Screen 
+        <DrawerNavigator.Screen
+            
+             
             name="Editar Perfil"
             component={EditPerfil} 
         />
-        <DrawerNavigator.Screen 
+        <DrawerNavigator.Screen
+        
             name="Sair"
             component={Logon}
             options={{
+
+                
+                
                 drawerLabel: "Sair",
                 drawerIcon: ({}) => <MaterialCommunityIcons name="logout" size={24} color="black" />,
-            }}  
+            }}
+           
         />
     </DrawerNavigator.Navigator>
   );
 }
 
 export default Drawer;
+
+const styles = StyleSheet.create({
+    description:{
+        marginBottom: 10
+
+    }
+   
+  
+
+   
+});
+

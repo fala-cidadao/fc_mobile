@@ -9,6 +9,10 @@ import { DrawerActions } from '@react-navigation/native';
 const Map: React.FC = () => {
     const navigation = useNavigation();
 
+    function handleNavigateToRegisterComplaints(){
+        navigation.navigate('RegisterComplaints');
+    }
+
     return(
         <View style={styles.container}>
             <MapView
@@ -42,7 +46,7 @@ const Map: React.FC = () => {
 
                 </TouchableOpacity>
                     
-                <TouchableOpacity style={styles.buttonPlus} onPress={()=>{}}>
+                <TouchableOpacity style={styles.buttonPlus} onPress={handleNavigateToRegisterComplaints}>
                     <Entypo name="plus" size={45} color="#FFFFFF"/>
 
                 </TouchableOpacity>
