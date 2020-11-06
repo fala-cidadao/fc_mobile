@@ -1,14 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
 import Map from '../Map';
-import ComplaintClose from '../ComplaintsClose';
 import MyComplaint from '../ComplaintsMy';
 import Logon from '../Logon';
 import EditPerfil from '../EditPerfil';
 import DrawerContent from '../../components/DrawerContent';
+import { color } from 'react-native-reanimated';
+import { Roboto_900Black } from '@expo-google-fonts/roboto';
 
 
 
@@ -23,21 +24,26 @@ const Drawer: React.FC = () => {
                     name="Map" 
                     component={Map}
                     options={{
-                        drawerLabel: "Mapa",
-                        drawerIcon: ({color, size}) => <FontAwesome name="map-marker" size={size} color={color} />,
+                        drawerLabel: "Reclamações próximas",
+                        drawerIcon: ({color, size}) => <FontAwesome name="map-marker" size={size} color={color} style={{marginLeft: 10}}/>,
                     }} 
                 />
-                <DrawerNavigator.Screen
-                    name="Reclamações próximas"
-                    component={ComplaintClose} 
-                />
+              
                 <DrawerNavigator.Screen 
-                    name="Minhas reclamações"
-                    component={MyComplaint} 
+                    name="MyComplaint"
+                    component={MyComplaint}
+                    options={{
+                        drawerLabel: "Minhas reclamações",
+                        drawerIcon: ({color, size}) => <FontAwesome name="list-ul" size={size} color={color} style={{marginLeft: 10}}/>,
+                    }}
                 />
                 <DrawerNavigator.Screen
-                    name="Editar Perfil"
+                    name="EditPerfil"
                     component={EditPerfil} 
+                    options={{
+                        drawerLabel: "Editar Perfil",
+                        drawerIcon: ({color, size}) => <Feather name="edit" size={size} color={color} style={{marginLeft: 10}}/>,
+                    }}
                 />
 
             <DrawerNavigator.Screen
@@ -46,7 +52,7 @@ const Drawer: React.FC = () => {
                 component={Logon}
                 options={{
                     drawerLabel: "Sair",
-                    drawerIcon: ({}) => <MaterialCommunityIcons name="logout" size={24} color="black" />,
+                    drawerIcon: ({color, size}) => <MaterialCommunityIcons name="logout" size={size} color={color}  style={{marginLeft: 10}}/>,
                 }}
             
             />
