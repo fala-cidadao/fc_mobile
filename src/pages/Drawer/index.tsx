@@ -4,13 +4,12 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { FontAwesome, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 
 import Map from '../Map';
-import MyComplaint from '../ComplaintsMy';
+import MyComplaints from '../MyComplaints';
 import Logon from '../Logon';
 import EditPerfil from '../EditPerfil';
 import DrawerContent from '../../components/DrawerContent';
 import { color } from 'react-native-reanimated';
 import { Roboto_900Black } from '@expo-google-fonts/roboto';
-
 
 
 const DrawerNavigator = createDrawerNavigator();
@@ -30,8 +29,8 @@ const Drawer: React.FC = () => {
                 />
               
                 <DrawerNavigator.Screen 
-                    name="MyComplaint"
-                    component={MyComplaint}
+                    name="MyComplaints"
+                    component={MyComplaints}
                     options={{
                         drawerLabel: "Minhas reclamações",
                         drawerIcon: ({color, size}) => <FontAwesome name="list-ul" size={size} color={color} style={{marginLeft: 10}}/>,
