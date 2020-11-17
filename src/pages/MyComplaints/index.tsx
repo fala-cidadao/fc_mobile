@@ -21,7 +21,7 @@ const MyComplaints = () => {
     }
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
+        <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 24, paddingTop: 24, paddingLeft: 15, paddingRight: 15 }}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={handleNavigateToBack}>
                         <Left name="left" size={40} color="#000000"
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     header:{
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 14
+        marginBottom: 14,
     },
     title: {
         marginLeft: 10,
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         borderRadius: 20,
         backgroundColor: '#FFF',
+        
     },
 
     subComplaints: {
@@ -172,7 +173,8 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         marginTop: -15,
         marginBottom: 5,
-        color: '#737380'
+        color: '#737380',
+        
     },
 
     titleComplaints:{
@@ -198,10 +200,5 @@ const styles = StyleSheet.create({
     textDescription: {
         marginLeft: 5,
         fontFamily: 'Roboto_400Regular', 
-        
     }
-
-
-
-
 })  
