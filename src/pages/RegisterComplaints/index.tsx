@@ -4,7 +4,6 @@ import { Feather, AntDesign as Left  } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import Constants from 'expo-constants';
-import { color } from 'react-native-reanimated';
 
 const RegisterComplaints = () => {
     const navigation = useNavigation();
