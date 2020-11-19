@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign as Left } from '@expo/vector-icons'; 
@@ -7,13 +7,15 @@ import Constants from 'expo-constants';
 const Recovery = () => {
     const navigation = useNavigation();
 
+    const [newEmail, setNewEmail] = useState('');
+
     function handleNavigateToBack(){
         navigation.goBack();
     }
 
     return( 
         <ImageBackground 
-            source={require('../../asserts/PNG/Background.png')} 
+            source={require('../../assets/PNG/Background.png')} 
             style={styles.background}
         >
             <View style={styles.container}>
@@ -23,7 +25,7 @@ const Recovery = () => {
                 </TouchableOpacity>
                 <View style={styles.main}>
                     <Image 
-                        source={require('../../asserts/PNG/Fala.png')}
+                        source={require('../../assets/PNG/Fala.png')}
                         style={styles.image}
                     />
                     <Text style={styles.description}>
@@ -35,6 +37,8 @@ const Recovery = () => {
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite seu e-mail"
+                            value={newEmail}
+                            onChangeText={setNewEmail}
                         />
                     </View>
                     
@@ -112,4 +116,3 @@ const styles = StyleSheet.create({
         fontSize: 21,
     }
 });
-
