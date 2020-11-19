@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign as Left } from '@expo/vector-icons'; 
@@ -6,6 +6,8 @@ import Constants from 'expo-constants';
 
 const Recovery = () => {
     const navigation = useNavigation();
+
+    const [newEmail, setNewEmail] = useState('');
 
     function handleNavigateToBack(){
         navigation.goBack();
@@ -35,6 +37,8 @@ const Recovery = () => {
                             style={styles.input}
                             placeholderTextColor =  "#8DA1B9"
                             placeholder="Digite seu e-mail"
+                            value={newEmail}
+                            onChangeText={setNewEmail}
                         />
                     </View>
                     

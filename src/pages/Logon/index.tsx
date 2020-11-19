@@ -92,7 +92,6 @@ const Logon = () => {
 export default Logon;
 
 const styles = StyleSheet.create({
-   
     background: {
         resizeMode: "contain",
         flex: 1,
@@ -131,8 +130,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
 
-    
-    
     button: {
         backgroundColor: '#0B6E4F',
         height: 60,

@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'center',
     },
+    
     image: {
         resizeMode: "contain",
         flex: 1,  
@@ -96,7 +97,8 @@ const styles = StyleSheet.create({
     },
 
     inputs: {
-        marginTop: '10%'
+        marginTop: '10%',
+    
     },
 
     label:{
@@ -106,7 +108,6 @@ const styles = StyleSheet.create({
         color: '#0B6E4F',
         fontFamily: 'Roboto_500Medium',
         marginBottom: -15,
-
     },
 
     input: {
