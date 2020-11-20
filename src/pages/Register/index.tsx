@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput, Alert} from "react-native";
+import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign as Left } from '@expo/vector-icons'; 
+import { AntDesign as Left } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 
 import { UserDto } from "../../interfaces/UserDto.interface";
@@ -18,11 +18,11 @@ const Register = () => {
 
     const { signUp } = useAuth();
 
-    function handleNavigateToInitiation(){
+    function handleNavigateToInitiation() {
         navigation.navigate('Initiation');
     }
 
-    function handleNavigateToLogon(){
+    function handleNavigateToLogon() {
         navigation.navigate('Logon');
     }
 
@@ -61,18 +61,18 @@ const Register = () => {
         };
     };
 
-    return( 
-        <ImageBackground 
-            source={require('../../assets/PNG/Background.png')} 
+    return (
+        <ImageBackground
+            source={require('../../assets/PNG/Background.png')}
             style={styles.background}
         >
             <View style={styles.container}>
                 <TouchableOpacity onPress={handleNavigateToInitiation}>
                     <Left name="left" size={40} color="#000000"
-                    style={{marginLeft: '5%'}}/>
+                        style={{ marginLeft: '5%' }} />
                 </TouchableOpacity>
                 <View style={styles.main}>
-                    <Image 
+                    <Image
                         source={require('../../assets/PNG/Fala.png')}
                         style={styles.image}
                     />
@@ -80,41 +80,41 @@ const Register = () => {
                     <View style={styles.inputs}>
                         <TextInput
                             style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
+                            placeholderTextColor="#8DA1B9"
                             placeholder="Digite seu nome"
                             value={name}
                             onChangeText={setName}
                         />
                         <TextInput
                             style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
+                            placeholderTextColor="#8DA1B9"
                             placeholder="Digite seu e-mail"
                             value={email}
                             onChangeText={setEmail}
                         />
-                         <TextInput
-                            style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
+                        <TextInput
+                            style={[styles.input, { fontFamily: 'Roboto_400Regular' }]}
+                            placeholderTextColor="#8DA1B9"
                             placeholder="Digite sua senha"
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry
                         />
                         <TextInput
-                            style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
+                            style={[styles.input, { fontFamily: 'Roboto_400Regular' }]}
+                            placeholderTextColor="#8DA1B9"
                             placeholder="Confirme sua senha"
                             value={confirmPassword}
                             onChangeText={setConfirmPassword}
                             secureTextEntry
                         />
                     </View>
-                    
+
                     <TouchableOpacity style={styles.button} onPress={onSubmit}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleNavigateToLogon}>
-                            <Text style={styles.linkText} >Acessar sua conta</Text>
+                        <Text style={styles.linkText} >Acessar sua conta</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -125,7 +125,7 @@ const Register = () => {
 export default Register;
 
 const styles = StyleSheet.create({
-   
+
     background: {
         resizeMode: "contain",
         flex: 1,
@@ -137,15 +137,15 @@ const styles = StyleSheet.create({
         paddingTop: 40 + Constants.statusBarHeight,
     },
 
-    main:{
+    main: {
         flex: 1,
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
     },
 
     image: {
         resizeMode: "contain",
-        flex: 1,  
+        flex: 1,
         maxHeight: "25%",
         maxWidth: "94%"
     },
@@ -162,9 +162,9 @@ const styles = StyleSheet.create({
         borderBottomColor: '#8DA1B9',
         paddingLeft: 2,
         fontSize: 20,
-        
+
     },
-    
+
     button: {
         backgroundColor: '#0B6E4F',
         height: 60,
@@ -173,14 +173,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: '6%',
         justifyContent: 'center',
-        
+
     },
-  
+
     buttonText: {
         color: '#FFF',
         fontFamily: 'Roboto_500Medium',
         fontSize: 21,
-        
+
     },
     linkText: {
         color: '#5B7D6C',

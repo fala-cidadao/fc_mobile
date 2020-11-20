@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput, Alert} from "react-native";
+import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign as Left } from '@expo/vector-icons'; 
+import { AntDesign as Left } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 
 import { LoginDto } from "../../interfaces/LoginDto.interface";
@@ -16,15 +16,15 @@ const Logon = () => {
 
     const { user, signIn } = useAuth();
 
-    function handleNavigateToInitiation(){
+    function handleNavigateToInitiation() {
         navigation.navigate('Initiation');
     }
 
-    function handleNavigateToRecovery(){
+    function handleNavigateToRecovery() {
         navigation.navigate('Recovery');
     }
 
-    function handleNavigateToMapMenu(){
+    function handleNavigateToMapMenu() {
         navigation.navigate('Drawer');
     }
 
@@ -42,18 +42,18 @@ const Logon = () => {
         await signIn(signInRequest);
     };
 
-    return( 
-        <ImageBackground 
-            source={require('../../assets/PNG/Background.png')} 
+    return (
+        <ImageBackground
+            source={require('../../assets/PNG/Background.png')}
             style={styles.background}
         >
             <View style={styles.container}>
                 <TouchableOpacity onPress={handleNavigateToInitiation}>
                     <Left name="left" size={40} color="#000000"
-                    style={{marginLeft: '5%'}}/>
+                        style={{ marginLeft: '5%' }} />
                 </TouchableOpacity>
                 <View style={styles.main}>
-                    <Image 
+                    <Image
                         source={require('../../assets/PNG/Fala.png')}
                         style={styles.image}
                     />
@@ -62,26 +62,26 @@ const Logon = () => {
                     <View style={styles.inputs}>
                         <TextInput
                             style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
+                            placeholderTextColor="#8DA1B9"
                             placeholder="Digite seu e-mail"
                             value={email}
                             onChangeText={setEmail}
                         />
                         <TextInput
-                            style={styles.input}
-                            placeholderTextColor =  "#8DA1B9"
+                            style={[styles.input, { fontFamily: 'Roboto_400Regular' }]}
+                            placeholderTextColor="#8DA1B9"
                             placeholder="Digite sua senha"
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry
                         />
                     </View>
-                    
+
                     <TouchableOpacity style={styles.button} onPress={handleNavigateToMapMenu}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleNavigateToRecovery}>
-                            <Text style={styles.linkText} >Esqueci minha senha!</Text>
+                        <Text style={styles.linkText} >Esqueci minha senha!</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -103,21 +103,21 @@ const styles = StyleSheet.create({
         paddingTop: 40 + Constants.statusBarHeight,
     },
 
-    main:{
+    main: {
         flex: 1,
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent: 'center',
     },
 
     image: {
         resizeMode: "contain",
-        flex: 1,  
         maxHeight: "25%",
         maxWidth: "94%"
     },
 
     inputs: {
-        marginTop: '10%'
+        marginTop: '10%',
+        width: '48%'
     },
 
     input: {
@@ -138,15 +138,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: '16%',
         justifyContent: 'center',
-        
     },
-  
+
     buttonText: {
         color: '#FFF',
         fontFamily: 'Roboto_500Medium',
         fontSize: 21,
-        
     },
+
     linkText: {
         color: '#5B7D6C',
         fontFamily: 'Roboto_500Medium',
