@@ -183,7 +183,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 30
-        
     },
 
     title: {
@@ -213,14 +212,10 @@ const styles = StyleSheet.create({
 
     select: {
         backgroundColor: '#CAF0C1',
-      
         borderColor: '#0B6E4F',
         borderWidth: 1.4,
         borderRadius: 20,
-        
-        
         marginBottom: 16,
-        
     },
 
     imagesInput: {

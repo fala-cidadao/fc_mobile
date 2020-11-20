@@ -34,11 +34,7 @@ const Routes = () => {
                 <appStack.Screen name="EditPerfil" component={EditPerfil}/>
                 <appStack.Screen name="RegisterComplaints" component={RegisterComplaints}/>
                 <appStack.Screen name="DetailComplaints" component={DetailComplaints}/>
-
-
-
             </appStack.Navigator>
-
         </NavigationContainer>
     );
 }
