@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, ImageBackground, Image, TouchableOpacity, TextInput } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from 'react';
+import { Text, View, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { AntDesign as Left } from '@expo/vector-icons';
-import Constants from 'expo-constants';
 
-const Recovery = () => {
+import BackgroundImg from '../../assets/PNG/Background.png';
+import Logo from '../../assets/PNG/Fala.png';
+
+import styles from './styles';
+
+const Recovery: React.FC = () => {
   const navigation = useNavigation();
 
   const [newEmail, setNewEmail] = useState('');
@@ -14,23 +18,16 @@ const Recovery = () => {
   }
 
   return (
-    <ImageBackground
-      source={require('../../assets/PNG/Background.png')}
-      style={styles.background}
-    >
+    <ImageBackground source={BackgroundImg} style={styles.background}>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateToBack}>
-          <Left name="left" size={40} color="#000000"
-            style={{ marginLeft: '5%' }} />
+          <Left name="left" size={40} color="#000000" style={{ marginLeft: '5%' }} />
         </TouchableOpacity>
         <View style={styles.main}>
-          <Image
-            source={require('../../assets/PNG/Fala.png')}
-            style={styles.image}
-          />
+          <Image source={Logo} style={styles.image} />
           <Text style={styles.description}>
             Será enviado um email com o link para que seja possível alterar a senha!
-                    </Text>
+          </Text>
 
           <View>
             <TextInput
@@ -42,77 +39,13 @@ const Recovery = () => {
             />
           </View>
 
-          <TouchableOpacity style={styles.button} onPress={() => { }}>
+          <TouchableOpacity style={styles.button} onPress={() => {}}>
             <Text style={styles.buttonText}>Recuperar Senha</Text>
           </TouchableOpacity>
-
         </View>
       </View>
-    </ImageBackground >
+    </ImageBackground>
   );
 };
 
 export default Recovery;
-
-const styles = StyleSheet.create({
-
-  background: {
-    resizeMode: "contain",
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
-
-  container: {
-    flex: 1,
-    paddingTop: 40 + Constants.statusBarHeight,
-  },
-
-  main: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  image: {
-    resizeMode: "contain",
-    flex: 1,
-    maxHeight: "25%",
-    maxWidth: "94%"
-  },
-
-  description: {
-    marginTop: '20%',
-    maxWidth: '85%',
-    lineHeight: 20,
-    color: '#000000',
-    fontFamily: 'Roboto_400Regular',
-    fontSize: 18,
-  },
-  input: {
-    marginTop: '15%',
-    height: 50,
-    borderBottomWidth: 1,
-    marginHorizontal: '-45%',
-    borderBottomColor: '#8DA1B9',
-    paddingLeft: 6,
-    fontSize: 20,
-  },
-
-  button: {
-
-    backgroundColor: '#0B6E4F',
-    height: 60,
-    width: '80%',
-    borderRadius: 20,
-    alignItems: 'center',
-    marginTop: '16%',
-    justifyContent: 'center',
-    marginBottom: '15%'
-  },
-
-  buttonText: {
-    color: '#FFF',
-    fontFamily: 'Roboto_500Medium',
-    fontSize: 21,
-  }
-});

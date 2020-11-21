@@ -2,12 +2,6 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
-  background: {
-    resizeMode: 'contain',
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
-
   container: {
     flex: 1,
     paddingTop: 40 + Constants.statusBarHeight,
@@ -26,19 +20,43 @@ export default StyleSheet.create({
     maxWidth: '94%',
   },
 
+  imagesInput: {
+    resizeMode: 'contain',
+    flex: 1,
+    backgroundColor: '#0B6E4F',
+    borderColor: '#CAF0C1',
+    borderWidth: 1.4,
+    borderRadius: 70,
+    maxHeight: 140,
+    width: 140,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+    marginTop: '-30%',
+  },
+
   inputs: {
-    marginTop: '5%',
+    marginTop: '10%',
+  },
+
+  label: {
+    marginHorizontal: '-45%',
+    paddingLeft: 6,
+    fontSize: 14,
+    color: '#0B6E4F',
+    fontFamily: 'Roboto_500Medium',
+    marginBottom: -15,
   },
 
   input: {
     height: 50,
     borderBottomWidth: 1,
     marginHorizontal: '-45%',
-    margin: 7,
-    borderBottomColor: '#8DA1B9',
-    paddingLeft: 2,
-    fontSize: 20,
+    margin: 14,
+    borderBottomColor: '#0B6E4F',
     fontFamily: 'Roboto_400Regular',
+    paddingLeft: 6,
+    fontSize: 18,
   },
 
   button: {
@@ -47,7 +65,7 @@ export default StyleSheet.create({
     width: '80%',
     borderRadius: 20,
     alignItems: 'center',
-    marginTop: '6%',
+    marginTop: '16%',
     justifyContent: 'center',
   },
 
@@ -55,12 +73,5 @@ export default StyleSheet.create({
     color: '#FFF',
     fontFamily: 'Roboto_500Medium',
     fontSize: 21,
-  },
-  linkText: {
-    color: '#5B7D6C',
-    fontFamily: 'Roboto_500Medium',
-    fontSize: 16,
-    marginTop: '5%',
-    marginBottom: '10%',
   },
 });

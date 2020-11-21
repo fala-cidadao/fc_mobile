@@ -21,13 +21,13 @@ export default StyleSheet.create({
 
   image: {
     resizeMode: 'contain',
-    flex: 1,
     maxHeight: '25%',
     maxWidth: '94%',
   },
 
   inputs: {
     marginTop: '10%',
+    width: '48%',
   },
 
   input: {
@@ -38,6 +38,7 @@ export default StyleSheet.create({
     borderBottomColor: '#8DA1B9',
     paddingLeft: 6,
     fontSize: 20,
+    fontFamily: 'Roboto_400Regular',
   },
 
   button: {
@@ -55,6 +56,7 @@ export default StyleSheet.create({
     fontFamily: 'Roboto_500Medium',
     fontSize: 21,
   },
+
   linkText: {
     color: '#5B7D6C',
     fontFamily: 'Roboto_500Medium',

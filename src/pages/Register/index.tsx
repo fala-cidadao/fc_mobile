@@ -15,6 +15,9 @@ import { UserDto } from '../../interfaces/UserDto.interface';
 import { useAuth } from '../../contexts/authContext';
 import ValidateEmailRegex from '../../utils/utils';
 
+import BackgroundImg from '../../assets/PNG/Background.png';
+import Logo from '../../assets/PNG/Fala.png';
+
 import styles from './styles';
 
 const Register = (): JSX.Element => {
@@ -57,23 +60,16 @@ const Register = (): JSX.Element => {
       phone: '123123',
       role: 'admin',
     };
-  }
+  };
 
   return (
-    <ImageBackground
-      source={require('../../assets/PNG/Background.png')}
-      style={styles.background}
-    >
+    <ImageBackground source={BackgroundImg} style={styles.background}>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateToInitiation}>
-          <Left name="left" size={40} color="#000000"
-            style={{ marginLeft: '5%' }} />
+          <Left name="left" size={40} color="#000000" style={{ marginLeft: '5%' }} />
         </TouchableOpacity>
         <View style={styles.main}>
-          <Image
-            source={require('../../assets/PNG/Fala.png')}
-            style={styles.image}
-          />
+          <Image source={Logo} style={styles.image} />
 
           <View style={styles.inputs}>
             <TextInput
@@ -91,7 +87,7 @@ const Register = (): JSX.Element => {
               onChangeText={setEmail}
             />
             <TextInput
-              style={[styles.input, { fontFamily: 'Roboto_400Regular' }]}
+              style={styles.input}
               placeholderTextColor="#8DA1B9"
               placeholder="Digite sua senha"
               value={password}
@@ -99,7 +95,7 @@ const Register = (): JSX.Element => {
               secureTextEntry
             />
             <TextInput
-              style={[styles.input, { fontFamily: 'Roboto_400Regular' }]}
+              style={styles.input}
               placeholderTextColor="#8DA1B9"
               placeholder="Confirme sua senha"
               value={confirmPassword}
@@ -112,11 +108,11 @@ const Register = (): JSX.Element => {
             <Text style={styles.buttonText}>Continuar</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleNavigateToLogon}>
-            <Text style={styles.linkText} >Acessar sua conta</Text>
+            <Text style={styles.linkText}>Acessar sua conta</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </ImageBackground >
+    </ImageBackground>
   );
 };
 
