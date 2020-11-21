@@ -37,6 +37,7 @@ export default StyleSheet.create({
 
   inputs: {
     marginTop: '10%',
+    width: '48%',
   },
 
   label: {
@@ -69,9 +70,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
 
-  buttonText: {
+  buttonText: {  
     color: '#FFF',
     fontFamily: 'Roboto_500Medium',
     fontSize: 21,
   },
+
+
 });

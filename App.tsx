@@ -19,11 +19,11 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <>
-      <AuthProvider>
-        <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-        <Routes />
-      </AuthProvider>
-    </>
+      <>
+          <AuthProvider>
+              <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+              <Routes />
+            </AuthProvider>
+        </>
   );
 }

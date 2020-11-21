@@ -63,56 +63,56 @@ const Register = (): JSX.Element => {
   };
 
   return (
-    <ImageBackground source={BackgroundImg} style={styles.background}>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={handleNavigateToInitiation}>
-          <Left name="left" size={40} color="#000000" style={{ marginLeft: '5%' }} />
-        </TouchableOpacity>
-        <View style={styles.main}>
-          <Image source={Logo} style={styles.image} />
+      <ImageBackground source={BackgroundImg} style={styles.background}>
+          <View style={styles.container}>
+          <TouchableOpacity onPress={handleNavigateToInitiation}>
+                  <Left name="left" size={40} color="#000000" style={{ marginLeft: '5%' }} />
+                </TouchableOpacity>
+                <View style={styles.main}>
+                    <Image source={Logo} style={styles.image} />
 
-          <View style={styles.inputs}>
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#8DA1B9"
-              placeholder="Digite seu nome"
-              value={name}
-              onChangeText={setName}
-            />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#8DA1B9"
-              placeholder="Digite seu e-mail"
-              value={email}
-              onChangeText={setEmail}
-            />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#8DA1B9"
-              placeholder="Digite sua senha"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-            />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#8DA1B9"
-              placeholder="Confirme sua senha"
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-              secureTextEntry
-            />
-          </View>
+              <View style={styles.inputs}>
+                        <TextInput
+                            style={styles.input}
+                  placeholderTextColor="#8DA1B9"
+                  placeholder="Digite seu nome"
+                            value={name}
+                  onChangeText={setName}
+                />
+                        <TextInput
+                            style={styles.input}
+                            placeholderTextColor="#8DA1B9"
+                  placeholder="Digite seu e-mail"
+                  value={email}
+                  onChangeText={setEmail}
+                />
+                    <TextInput
+                            style={styles.input}
+                            placeholderTextColor="#8DA1B9"
+                  placeholder="Digite sua senha"
+                  value={password}
+                  onChangeText={setPassword}
+                            secureTextEntry
+                />
+                    <TextInput
+                          style={styles.input}
+                          placeholderTextColor="#8DA1B9"
+                          placeholder="Confirme sua senha"
+                            value={confirmPassword}
+                          onChangeText={setConfirmPassword}
+                          secureTextEntry
+                        />
+                  </View>
 
-          <TouchableOpacity style={styles.button} onPress={onSubmit}>
-            <Text style={styles.buttonText}>Continuar</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleNavigateToLogon}>
-            <Text style={styles.linkText}>Acessar sua conta</Text>
-          </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={onSubmit}>
+                    <Text style={styles.buttonText}>Continuar</Text>
+                  </TouchableOpacity>
+              <TouchableOpacity onPress={handleNavigateToLogon}>
+                      <Text style={styles.linkText}>Acessar sua conta</Text>
+                    </TouchableOpacity>
+            </View>
         </View>
-      </View>
-    </ImageBackground>
+        </ImageBackground>
   );
 };
 

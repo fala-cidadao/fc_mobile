@@ -24,7 +24,7 @@ const Map: React.FC = () => {
   ];
 
   function handleNavigateToRegisterComplaints() {
-    navigation.navigate('RegisterComplaints');
+    navigation.navigate('SelectMap');
   }
 
   function handleStateChange(state: { open: boolean }) {
@@ -36,60 +36,61 @@ const Map: React.FC = () => {
   }
 
   return (
-    <Provider>
-      <Portal>
-        <View style={styles.container}>
-          <MapView
-            provider={PROVIDER_GOOGLE}
-            style={styles.map}
-            initialRegion={{
-              latitude: -7.2539795,
-              longitude: -35.8873468,
-              latitudeDelta: 0.008,
-              longitudeDelta: 0.008,
-            }}
-          >
-            <Marker
-              coordinate={{
-                latitude: -7.2539795,
-                longitude: -35.8873468,
-              }}
-            >
-              <Foundation name="marker" size={70} color="#000000" />
-            </Marker>
-          </MapView>
-          <View style={styles.topBar}>
-            <TouchableOpacity
-              style={styles.buttonMenu}
-              onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-            >
-              <Feather name="menu" size={48} color="black" />
-            </TouchableOpacity>
-          </View>
-          <FAB.Group
-            open={openFilter}
-            icon={openFilter ? 'close' : 'filter-outline'}
-            actions={options.map((o) => ({
-              icon: 'star',
-              label: o,
-              onPress: () => search(o),
-            }))}
-            visible
-            fabStyle={styles.buttonFilter}
-            onStateChange={handleStateChange}
-            theme={{ colors: { accent: '#0B6E4F' } }}
-          />
+      <Provider>
+          <Portal>
+              <View style={styles.container}>
+                  <MapView
+                  provider={PROVIDER_GOOGLE}
+                        style={styles.map}
+                  initialRegion={{
+                          latitude: -7.2539795,
+                          longitude: -35.8873468,
+                            latitudeDelta: 0.008,
+                          longitudeDelta: 0.008,
+                        }}
+                >
+                  <Marker
+                            coordinate={{
+                                latitude: -7.2539795,
+                                longitude: -35.8873468,
+                        }}
+                        >
+                            <Foundation name="marker" size={70} color="#000000" />
+                        </Marker>
+                </MapView>
+                    <View style={styles.topBar}>
+                  <TouchableOpacity
+                          style={styles.buttonMenu}
+                            onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+                        >
+                            <Feather name="menu" size={48} color="black" />
+                        </TouchableOpacity>
+                </View>
+                  <FAB.Group
+                        open={openFilter}
+                  icon={openFilter ? 'close' : 'filter-outline'}
+                
+                  actions={options.map((o) => ({
+                          icon: 'star',
+                            label: o,
+                          onPress: () => search(o),
+                        }))}
+                        visible
+                        fabStyle={styles.buttonFilter}
+                  onStateChange={handleStateChange}
+                  theme={{ colors: { accent: '#0B6E4F' } }}
+                />
 
-          <FAB
-            icon="plus"
-            style={styles.buttonPlus}
-            disabled={openFilter}
-            color={openFilter ? '#CCC' : '#FFF'}
-            onPress={handleNavigateToRegisterComplaints}
-          />
-        </View>
-      </Portal>
-    </Provider>
+                  <FAB
+                        icon="plus"
+                      style={styles.buttonPlus}
+                      disabled={openFilter}
+                      color={openFilter ? '#CCC' : '#FFF'}
+                      onPress={handleNavigateToRegisterComplaints}
+                    />
+                </View>
+            </Portal>
+        </Provider>
   );
 };
 

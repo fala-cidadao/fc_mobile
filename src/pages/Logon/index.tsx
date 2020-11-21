@@ -55,41 +55,41 @@ const Logon: React.FC = () => {
   };
 
   return (
-    <ImageBackground source={BackgroundImg} style={styles.background}>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={handleNavigateToInitiation}>
-          <Left name="left" size={40} color="#000000" style={{ marginLeft: '5%' }} />
-        </TouchableOpacity>
-        <View style={styles.main}>
-          <Image source={Logo} style={styles.image} />
+      <ImageBackground source={BackgroundImg} style={styles.background}>
+          <View style={styles.container}>
+              <TouchableOpacity onPress={handleNavigateToInitiation}>
+              <Left name="left" size={40} color="#000000" style={{ marginLeft: '5%' }} />
+            </TouchableOpacity>
+                <View style={styles.main}>
+              <Image source={Logo} style={styles.image} />
 
-          <View style={styles.inputs}>
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#8DA1B9"
-              placeholder="Digite seu e-mail"
-              value={email}
-              onChangeText={setEmail}
-            />
-            <TextInput
-              style={styles.input}
-              placeholderTextColor="#8DA1B9"
-              placeholder="Digite sua senha"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-            />
-          </View>
+                    <View style={styles.inputs}>
+                  <TextInput
+                            style={styles.input}
+                        placeholderTextColor="#8DA1B9"
+                            placeholder="Digite seu e-mail"
+                        value={email}
+                        onChangeText={setEmail}
+                      />
+                        <TextInput
+                        style={styles.input}
+                            placeholderTextColor="#8DA1B9"
+                        placeholder="Digite sua senha"
+                        value={password}
+                            onChangeText={setPassword}
+                        secureTextEntry
+                      />
+                </View>
 
-          <TouchableOpacity style={styles.button} onPress={handleNavigateToMapMenu}>
-            <Text style={styles.buttonText}>Continuar</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleNavigateToRecovery}>
-            <Text style={styles.linkText}>Esqueci minha senha!</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ImageBackground>
+              <TouchableOpacity style={styles.button} onPress={handleNavigateToMapMenu}>
+                        <Text style={styles.buttonText}>Continuar</Text>
+                    </TouchableOpacity>
+              <TouchableOpacity onPress={handleNavigateToRecovery}>
+                      <Text style={styles.linkText}>Esqueci minha senha!</Text>
+                    </TouchableOpacity>
+            </View>
+            </View>
+        </ImageBackground>
   );
 };
 

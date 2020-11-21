@@ -56,11 +56,29 @@ export default StyleSheet.create({
     fontFamily: 'Roboto_500Medium',
   },
 
-  adressText: {
-    fontFamily: 'Roboto_400Regular',
-    color: '#000000',
-    lineHeight: 20,
-    marginTop: 5,
+  mapContainer: {
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderWidth: 1.2,
+    borderColor: '#0B6E4F',
+    marginTop: 15,
+    backgroundColor: '#CAF0C1',
+  },
+
+  mapStyle: {
+    width: '100%',
+    height: 150,
+  },
+
+  routesContainer: {
+    padding: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  routesText: {
+    fontFamily: 'Roboto_500Medium',
+    color: '#0B6E4F',
   },
 
   separator: {

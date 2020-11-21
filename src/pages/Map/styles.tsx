@@ -27,12 +27,13 @@ export default StyleSheet.create({
     backgroundColor: '#0B6E4F',
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
   buttonPlus: {
     width: 56,
     height: 57,
     left: '5%',
-    bottom: '9%',
+    bottom: '10%',
     backgroundColor: '#0B6E4F',
     justifyContent: 'center',
     alignItems: 'center',
