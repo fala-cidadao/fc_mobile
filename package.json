@@ -3,6 +3,8 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "lint": "eslint --fix .",
+    "lint-check": "eslint .",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject"
@@ -38,7 +40,18 @@
     "@types/react": "~16.9.35",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
-    "react-native-web": "~0.13.7",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.6.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.12.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^6.14.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "prettier": "^2.1.2",
     "typescript": "~3.9.5"
   },
   "private": true
