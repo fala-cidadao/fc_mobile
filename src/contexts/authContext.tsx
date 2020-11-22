@@ -14,58 +14,58 @@ import api from '../services/api';
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<LoginResponse | null>(null);
+    const [user, setUser] = useState<LoginResponse | null>(null);
 
-  const signIn = async (foundUser: LoginDto): Promise<void> => {
-    try {
-      const { data } = await api.post<LoginResponse>('/auth/login', foundUser);
+    const signIn = async (foundUser: LoginDto): Promise<void> => {
+        try {
+            const { data } = await api.post<LoginResponse>('/auth/login', foundUser);
 
-      if (!data) {
-        throw Error('Ops... Erro desconhecido');
-      }
+            if (!data) {
+                throw Error('Ops... Erro desconhecido');
+            }
 
-      if (data.response && data.response.error) {
-        throw Error(data.message);
-      }
+            if (data.response && data.response.error) {
+                throw Error(data.message);
+            }
 
-      Alert.alert('Bem-vindo(a)', data.user.name, [{ text: 'Ok' }]);
+            Alert.alert('Bem-vindo(a)', data.user.name, [{ text: 'Ok' }]);
 
-      setUser(data);
-    } catch (error) {
-      Alert.alert(error.message, '', [{ text: 'Ok' }]);
-    }
-  };
+            setUser(data);
+        } catch (error) {
+            Alert.alert(error.message, '', [{ text: 'Ok' }]);
+        }
+    };
 
-  const signUp = async (foundUser: UserDto): Promise<void> => {
-    try {
-      const { data } = await api.post('/users', foundUser);
+    const signUp = async (foundUser: UserDto): Promise<void> => {
+        try {
+            const { data } = await api.post('/users', foundUser);
 
-      Alert.alert('Usuário cadastrado', '', [{ text: 'Ok' }]);
+            Alert.alert('Usuário cadastrado', '', [{ text: 'Ok' }]);
 
-      setUser(data);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    }
-  };
+            setUser(data);
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.log(error);
+        }
+    };
 
-  const signOut = (): void => {
-    setUser(null);
-  };
+    const signOut = (): void => {
+        setUser(null);
+    };
 
-  const authContext = {
-    signed: !!user,
-    user,
-    signIn,
-    signUp,
-    signOut,
-  };
+    const authContext = {
+        signed: !!user,
+        user,
+        signIn,
+        signUp,
+        signOut,
+    };
 
-  return <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>;
 };
 
 export function useAuth(): AuthContextData {
-  const context = useContext(AuthContext);
+    const context = useContext(AuthContext);
 
-  return context;
+    return context;
 }

@@ -36,7 +36,7 @@ const MyComplaints: React.FC = () => {
         <TouchableOpacity onPress={handleNavigateToBack}>
           <Left
             name="left"
-            size={40}
+            size={30}
             color="#000000"
             style={{ marginLeft: -10, marginRight: '5%' }}
           />

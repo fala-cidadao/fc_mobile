@@ -8,22 +8,22 @@ import Routes from './src/routes';
 import { AuthProvider } from './src/contexts/authContext';
 
 export default function App(): JSX.Element {
-  const [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_500Medium,
-    Ubuntu_700Bold,
-  });
+    const [fontsLoaded] = useFonts({
+        Roboto_400Regular,
+        Roboto_500Medium,
+        Ubuntu_700Bold,
+    });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    }
 
-  return (
-      <>
-          <AuthProvider>
-              <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
-              <Routes />
+    return (
+        <>
+            <AuthProvider>
+                <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+                <Routes />
             </AuthProvider>
         </>
-  );
+    );
 }

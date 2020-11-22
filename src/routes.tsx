@@ -16,26 +16,26 @@ import SelectMap from './pages/SelectMap';
 const appStack = createStackNavigator();
 
 const Routes: React.FC = () => (
-  <NavigationContainer>
-      <appStack.Navigator
-      headerMode="none"
-      screenOptions={{
-              cardStyle: {
-                backgroundColor: '#ffffff',
-              },
+    <NavigationContainer>
+        <appStack.Navigator
+            headerMode="none"
+            screenOptions={{
+                cardStyle: {
+                    backgroundColor: '#ffffff',
+                },
             }}
-    >
-      <appStack.Screen name="Initiation" component={Initiation} />
+        >
+            <appStack.Screen name="Initiation" component={Initiation} />
             <appStack.Screen name="Logon" component={Logon} />
-      <appStack.Screen name="Register" component={Register} />
-      <appStack.Screen name="Recovery" component={Recovery} />
+            <appStack.Screen name="Register" component={Register} />
+            <appStack.Screen name="Recovery" component={Recovery} />
             <appStack.Screen name="Drawer" component={Drawer} />
-      <appStack.Screen name="MyComplaints" component={MyComplaints} />
-      <appStack.Screen name="EditPerfil" component={EditPerfil} />
-      <appStack.Screen name="RegisterComplaints" component={RegisterComplaints} />
-      <appStack.Screen name="DetailComplaints" component={DetailComplaints} />
-      <appStack.Screen name="SelectMap" component={SelectMap} />
-    </appStack.Navigator>
+            <appStack.Screen name="MyComplaints" component={MyComplaints} />
+            <appStack.Screen name="EditPerfil" component={EditPerfil} />
+            <appStack.Screen name="RegisterComplaints" component={RegisterComplaints} />
+            <appStack.Screen name="DetailComplaints" component={DetailComplaints} />
+            <appStack.Screen name="SelectMap" component={SelectMap} />
+        </appStack.Navigator>
     </NavigationContainer>
 );
 

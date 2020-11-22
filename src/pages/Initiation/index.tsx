@@ -8,36 +8,36 @@ import Logo from '../../assets/PNG/Fala.png';
 import styles from './styles';
 
 const Initiation = (): JSX.Element => {
-  const navigation = useNavigation();
+    const navigation = useNavigation();
 
-  function handleNavigateToLogon() {
-    navigation.navigate('Logon');
-  }
+    function handleNavigateToLogon() {
+        navigation.navigate('Logon');
+    }
 
-  function handleNavigateToRegister() {
-    navigation.navigate('Register');
-  }
+    function handleNavigateToRegister() {
+        navigation.navigate('Register');
+    }
 
-  return (
-      <ImageBackground source={BackgroundImg} style={styles.container}>
-          <View style={styles.main}>
-          <Image source={Logo} style={styles.image} />
-          <View>
-                  <Text style={styles.title}>Seja bem-vindo! </Text>
-                  <Text style={styles.description}>
-              Faça sua voz ser ouvida e vamos em busca de uma cidade melhor!
+    return (
+        <ImageBackground source={BackgroundImg} style={styles.container}>
+            <View style={styles.main}>
+                <Image source={Logo} style={styles.image} />
+                <View>
+                    <Text style={styles.title}>Seja bem-vindo! </Text>
+                    <Text style={styles.description}>
+                        Faça sua voz ser ouvida e vamos em busca de uma cidade melhor!
                     </Text>
                 </View>
-          <TouchableOpacity style={styles.button} onPress={handleNavigateToLogon}>
+                <TouchableOpacity style={styles.button} onPress={handleNavigateToLogon}>
                     <Text style={styles.buttonText}>Acessar Conta</Text>
                 </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleNavigateToRegister}>
+                <TouchableOpacity onPress={handleNavigateToRegister}>
                     <Text style={styles.linkText}>Deseja realizar cadastro?</Text>
                 </TouchableOpacity>
-        </View>
+            </View>
         </ImageBackground>
-  );
+    );
 };
 
 export default Initiation;

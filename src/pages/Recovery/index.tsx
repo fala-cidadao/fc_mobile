@@ -9,43 +9,43 @@ import Logo from '../../assets/PNG/Fala.png';
 import styles from './styles';
 
 const Recovery: React.FC = () => {
-  const navigation = useNavigation();
+    const navigation = useNavigation();
 
-  const [newEmail, setNewEmail] = useState('');
+    const [newEmail, setNewEmail] = useState('');
 
-  function handleNavigateToBack() {
-    navigation.goBack();
-  }
+    function handleNavigateToBack() {
+        navigation.goBack();
+    }
 
-  return (
-      <ImageBackground source={BackgroundImg} style={styles.background}>
-          <View style={styles.container}>
-          <TouchableOpacity onPress={handleNavigateToBack}>
-                  <Left name="left" size={40} color="#000000" style={{ marginLeft: '5%' }} />
+    return (
+        <ImageBackground source={BackgroundImg} style={styles.background}>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={handleNavigateToBack}>
+                    <Left name="left" size={40} color="#000000" style={{ marginLeft: '5%' }} />
                 </TouchableOpacity>
                 <View style={styles.main}>
-              <Image source={Logo} style={styles.image} />
-              <Text style={styles.description}>
-                    Será enviado um email com o link para que seja possível alterar a senha!
+                    <Image source={Logo} style={styles.image} />
+                    <Text style={styles.description}>
+                        Será enviado um email com o link para que seja possível alterar a senha!
                     </Text>
 
-              <View>
-                      <TextInput
-                          style={styles.input}
+                    <View>
+                        <TextInput
+                            style={styles.input}
                             placeholderTextColor="#8DA1B9"
                             placeholder="Digite seu e-mail"
-                          value={newEmail}
-                          onChangeText={setNewEmail}
+                            value={newEmail}
+                            onChangeText={setNewEmail}
                         />
                     </View>
 
                     <TouchableOpacity style={styles.button} onPress={() => {}}>
                         <Text style={styles.buttonText}>Recuperar Senha</Text>
-                  </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
         </ImageBackground>
-  );
+    );
 };
 
 export default Recovery;
