@@ -16,7 +16,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<LoginResponse | null>(null);
 
-    const signIn = async (foundUser: LoginDto): Promise<void> => {
+    const signIn = async (foundUser: LoginDto): Promise<LoginResponse | null | undefined> => {
         try {
             const { data } = await api.post<LoginResponse>('/auth/login', foundUser);
 
@@ -31,6 +31,8 @@ export const AuthProvider: React.FC = ({ children }) => {
             Alert.alert('Bem-vindo(a)', data.user.name, [{ text: 'Ok' }]);
 
             setUser(data);
+            
+            return data;
         } catch (error) {
             Alert.alert(error.message, '', [{ text: 'Ok' }]);
         }
