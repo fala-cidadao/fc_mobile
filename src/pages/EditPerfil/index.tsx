@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign as Left, FontAwesome5 } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
 import styles from './styles';
+import { useAuth } from '../../contexts/authContext';
+import api from '../../services/api';
 
 const EditPerfil: React.FC = () => {
     const [newName, setNewName] = useState('');
@@ -13,12 +15,22 @@ const EditPerfil: React.FC = () => {
 
     const navigation = useNavigation();
 
+    const { user } = useAuth();
+
+    useEffect(() => {
+        if (user) {
+            setNewName(user.user.name);
+            setNewPassword(user.user.password);
+        }
+    }, []);
+
     function handleNavigateToBack() {
         navigation.goBack();
     }
 
-    function handleSave() {
+    async function handleSave() {
         // há implementar
+        await api.put(`/users/${user?.user.userId}`, { name: newName, password: newPassword });
     }
 
     const handleSelectImage = async () => {

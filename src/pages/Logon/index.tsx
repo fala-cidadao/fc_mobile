@@ -26,7 +26,7 @@ const Logon: React.FC = () => {
 
     const navigation = useNavigation();
 
-    const { user, signIn } = useAuth();
+    const { signIn } = useAuth();
 
     function handleNavigateToInitiation() {
         navigation.navigate('Initiation');
@@ -44,14 +44,18 @@ const Logon: React.FC = () => {
         if (!ValidateEmailRegex(email)) {
             Alert.alert('Invalid Email', '', [{ text: 'Ok' }]);
             return;
-        }
+        };
 
         const signInRequest: LoginDto = {
             email,
             password,
         };
 
-        await signIn(signInRequest);
+        const user = await signIn(signInRequest);
+
+        if (user) {
+            handleNavigateToMapMenu();
+        };
     };
 
     return (
@@ -81,7 +85,7 @@ const Logon: React.FC = () => {
                         />
                     </View>
 
-                    <TouchableOpacity style={styles.button} onPress={handleNavigateToMapMenu}>
+                    <TouchableOpacity style={styles.button} onPress={onSubmit}>
                         <Text style={styles.buttonText}>Continuar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleNavigateToRecovery}>

@@ -19,6 +19,7 @@ import BackgroundImg from '../../assets/PNG/Background.png';
 import Logo from '../../assets/PNG/Fala.png';
 
 import styles from './styles';
+import api from '../../services/api';
 
 const Register = (): JSX.Element => {
     const [name, setName] = useState('');
@@ -59,6 +60,11 @@ const Register = (): JSX.Element => {
             password,
             phone: '123123',
             role: 'admin',
+        };
+
+        if (validateSubmit()) {
+            await signUp(signUpRequest);
+            handleNavigateToLogon();
         };
     };
 

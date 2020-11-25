@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity, Picker, Image } from 'react-native';
+import { ScrollView, View, Text, TextInput, TouchableOpacity, Picker, Image, Alert } from 'react-native';
 import { Feather, AntDesign as Left } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
 import styles from './styles';
+import api from '../../services/api';
+import { useAuth } from '../../contexts/authContext';
 
 const RegisterComplaints: React.FC = () => {
     const navigation = useNavigation();
@@ -15,6 +17,8 @@ const RegisterComplaints: React.FC = () => {
     const [whatsApp, setWhastApp] = useState('');
     const [mail, setMail] = useState('');
     const [images, setImages] = useState<string[]>([]);
+
+    const { user } = useAuth();
 
     function handleNavigateToMap() {
         navigation.navigate('Map');
@@ -43,7 +47,21 @@ const RegisterComplaints: React.FC = () => {
     };
 
     const onSubmit = async () => {
-        // implemantar
+        const data = {
+            owner: user?.user.userId,
+            userImages: images,
+            title,
+            description,
+            location: {
+                latitude: -27.2092052,
+                longitude: -49.6401092 
+            },
+            category: 'safety'
+        };
+
+        await api.post('/problem', data);
+
+        Alert.alert('Reclamação cadastrada', '', [{ text: 'Ok' }]);
     };
 
     return (
@@ -81,7 +99,7 @@ const RegisterComplaints: React.FC = () => {
                     <Picker.Item label="Escolha uma opção" />
                     <Picker.Item label="Segurança" value="Segurança" />
                     <Picker.Item label="Energia e Iluminação" value="Eletrodomésticos" />
-                    <Picker.Item label="Coleta de Lixo" value="Coleta de Lixoa" />
+                    <Picker.Item label="Coleta de Lixo" value="Coleta de Lixo" />
                     <Picker.Item label="Saúde" value="Saúde" />
                     <Picker.Item
                         label="Infraestrutura e Mobilidade"
