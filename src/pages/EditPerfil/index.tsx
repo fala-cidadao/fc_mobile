@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign as Left, FontAwesome5 } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
@@ -29,8 +29,9 @@ const EditPerfil: React.FC = () => {
     }
 
     async function handleSave() {
-        // há implementar
         await api.put(`/users/${user?.user.userId}`, { name: newName, password: newPassword });
+
+        Alert.alert('Seus dados foram atualizados', '', [{ text: 'Ok ', onPress: navigation.goBack }]);
     }
 
     const handleSelectImage = async () => {
