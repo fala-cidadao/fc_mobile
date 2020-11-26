@@ -37,4 +37,17 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    mapMarkerContainer: {
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+  
+    mapMarkerTitle: {
+        fontFamily: 'Roboto_400Regular',
+        fontSize: 13,
+        marginBottom: -7,
+        fontWeight: 'bold'
+        
+        
+    },
 });
