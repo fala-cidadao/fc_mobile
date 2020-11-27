@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, Picker, Image, Alert } from 'react-native';
 import { Feather, AntDesign as Left } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
 import styles from './styles';
 import api from '../../services/api';
 import { useAuth } from '../../contexts/authContext';
 
+interface Location {
+    location: [number, number];
+};
+
 const RegisterComplaints: React.FC = () => {
     const navigation = useNavigation();
+    const route = useRoute();
     const [tag, setTag] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -19,6 +24,7 @@ const RegisterComplaints: React.FC = () => {
     const [images, setImages] = useState<string[]>([]);
 
     const { user } = useAuth();
+    const { location } = route.params as Location;
 
     function handleNavigateToMap() {
         navigation.navigate('Map');
@@ -53,15 +59,15 @@ const RegisterComplaints: React.FC = () => {
             title,
             description,
             location: {
-                latitude: -27.2092052,
-                longitude: -49.6401092 
+                latitude: location[0],
+                longitude: location[1] 
             },
             category: 'safety'
         };
 
         await api.post('/problem', data);
 
-        Alert.alert('Reclamação cadastrada', '', [{ text: 'Ok' }]);
+        Alert.alert('Reclamação cadastrada', '', [{ text: 'Ok', onPress: handleNavigateToMap }]);
     };
 
     return (

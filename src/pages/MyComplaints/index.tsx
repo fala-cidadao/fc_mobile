@@ -1,19 +1,55 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import { Fontisto, AntDesign as Left } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { List } from 'react-native-paper';
 
 import styles from './styles';
+import { useAuth } from '../../contexts/authContext';
+import api from '../../services/api';
+
+const textColors: { [label: string]: string } = {
+    'Em analise': '#FF0303',
+    'Em espera': '#FFC600',
+    'Em andamento': '#0047FF',
+    'Concluido': '#0B6E4F'
+};
+
+interface Problem {
+    _id: string;
+    category: string;
+    comments: [
+        {
+            image: string;
+            owner: string;
+            role: string;
+            text: string;
+        }
+    ];
+    description: string;
+    location: {
+        latitude: string;
+        longitude: string;
+    };
+    owner: string;
+    status: string;
+    title: string;
+    userImages: [];
+};
 
 const MyComplaints: React.FC = () => {
+  const [problems, setProblems] = useState([]);
   const navigation = useNavigation();
 
-  const redText = 'O responsável já está ciente e buscando \n resolver o problema.';
-  const yellowText = 'O problema foi dado como resolvido e \n espera a validação.';
-  const blueText = 'O problema está sendo resolvido!';
-  const greenText = 'O problema já foi resolvido e confirmado \n pelo reclamante.';
+  const { user } = useAuth();
+
+  useEffect(() => {
+    api.get('/problem').then(data => {
+        const myProblems = data.data.filter((problem: Problem) => problem.owner === user?.user.userId);
+        setProblems(myProblems);
+    });
+  }, []);
 
   function handleNavigateToBack() {
     navigation.goBack();
@@ -45,101 +81,35 @@ const MyComplaints: React.FC = () => {
       </View>
 
       <List.Section>
-        <List.Accordion
-          title="Tipo de reclamação"
-          titleStyle={styles.titleComplaints}
-          description="Em análise"
-          descriptionStyle={{ color: '#FF0303' }}
-          style={styles.complaints}
-        >
-          <TouchableOpacity onPress={handleNavigateToDetailComplaints}>
-            <List.Item
-              style={styles.subComplaints}
-              title="Fala, Zezé. Bom dia, cara. Deixa eu te falar uma coisa.
-                            Eu estou pensando aqui, sei que está difícil
-                            para vocês"
-              titleStyle={styles.titlesubComplaints}
-              description={(
-                <View style={styles.headerDescription}>
-                  <Fontisto name="ellipse" size={18} color="#FF0303" />
-                  <Text style={styles.textDescription}>{redText}</Text>
-                </View>
-              )}
-            />
-          </TouchableOpacity>
-        </List.Accordion>
-
-        <List.Accordion
-          title="Tipo de reclamação 2"
-          titleStyle={styles.titleComplaints}
-          description="Em espera"
-          descriptionStyle={{ color: '#FFC600' }}
-          style={styles.complaints}
-        >
-          <TouchableOpacity onPress={handleNavigateToDetailComplaints}>
-            <List.Item
-              style={styles.subComplaints}
-              title="Fala, Zezé. Bom dia, cara. Deixa eu te falar uma coisa.
-                            Eu estou pensando aqui, sei que está difícil
-                            para vocês"
-              titleStyle={styles.titlesubComplaints}
-              description={(
-                <View style={styles.headerDescription}>
-                  <Fontisto name="ellipse" size={18} color="#FFC600" />
-                  <Text style={styles.textDescription}>{yellowText}</Text>
-                </View>
-              )}
-            />
-          </TouchableOpacity>
-        </List.Accordion>
-
-        <List.Accordion
-          title="Tipo de reclamação 3"
-          titleStyle={styles.titleComplaints}
-          description="Em andamento"
-          descriptionStyle={{ color: '#0047FF' }}
-          style={styles.complaints}
-        >
-          <TouchableOpacity onPress={handleNavigateToDetailComplaints}>
-            <List.Item
-              style={styles.subComplaints}
-              title="Fala, Zezé. Bom dia, cara. Deixa eu te falar uma coisa.
-                            Eu estou pensando aqui, sei que está difícil
-                            para vocês"
-              titleStyle={styles.titlesubComplaints}
-              description={(
-                <View style={styles.headerDescription}>
-                  <Fontisto name="ellipse" size={18} color="#0047FF" />
-                  <Text style={styles.textDescription}>{blueText}</Text>
-                </View>
-              )}
-            />
-          </TouchableOpacity>
-        </List.Accordion>
-
-        <List.Accordion
-          title="Tipo de reclamação 4"
-          titleStyle={styles.titleComplaints}
-          description="Concluído"
-          descriptionStyle={{ color: '#0B6E4F' }}
-          style={styles.complaints}
-        >
-          <TouchableOpacity onPress={handleNavigateToDetailComplaints}>
-            <List.Item
-              style={styles.subComplaints}
-              title="Fala, Zezé. Bom dia, cara. Deixa eu te falar uma coisa.
-                            Eu estou pensando aqui, sei que está difícil
-                            para vocês"
-              titleStyle={styles.titlesubComplaints}
-              description={(
-                <View style={styles.headerDescription}>
-                  <Fontisto name="ellipse" size={18} color="#0B6E4F" />
-                  <Text style={styles.textDescription}>{greenText}</Text>
-                </View>
-              )}
-            />
-          </TouchableOpacity>
-        </List.Accordion>
+        {
+            problems.map((itemProblem: Problem) => {
+                return (
+                    <List.Accordion
+                        key={itemProblem._id}
+                        title={itemProblem.title}
+                        titleStyle={styles.titleComplaints}
+                        description={itemProblem.status}
+                        descriptionStyle={{ color: textColors[itemProblem.status] }}
+                        style={styles.complaints}
+                        >
+                        <TouchableOpacity onPress={handleNavigateToDetailComplaints}>
+                            <List.Item
+                            style={styles.subComplaints}
+                            title={''}
+                            titleStyle={styles.titlesubComplaints}
+                            description={(
+                                <View style={styles.headerDescription}>
+                                <Fontisto name="ellipse" size={18} color={textColors[itemProblem.status]} />
+                                <Text style={styles.textDescription}>{itemProblem.description}</Text>
+                                </View>
+                            )}
+                            />
+                        </TouchableOpacity>
+                    </List.Accordion>
+                );
+            })
+        }
+        
       </List.Section>
     </ScrollView>
   );

@@ -1,17 +1,66 @@
-import React from 'react';
-import { Image, View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, View, ScrollView, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { FontAwesome, AntDesign, Entypo, Octicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 
 import styles from './styles';
+import { useAuth } from '../../contexts/authContext';
+import api from '../../services/api';
+
+interface ILocation {
+    latitude: number;
+    longitude: number;
+};
+interface IProblem {
+    _id: string;
+    adminImages: [];
+    category: string;
+    comments: [{
+        owner: string | undefined;
+        text: string;
+        role: string | undefined;
+        image: string;
+    }];
+    createdAt: string;
+    description: [];
+    location: ILocation;
+    owner: string;
+    status: string;
+    title: string;
+    updateAt: string;
+    userImages: string[];
+};
+
+interface Route {
+    problem: IProblem;
+}
 
 const DetailComplaints: React.FC = () => {
+    const [comment, setComment] = useState('');
     const navigation = useNavigation();
+    const route = useRoute();
+    const { user } = useAuth();
+    const { problem } = route.params as Route;
 
     function handleNavigateToBack() {
         navigation.goBack();
     }
+
+    async function handleAddComment(problem: IProblem) {
+        const data = {
+            owner: user?.user.userId,
+            text: comment,
+            role: user?.user.role,
+            image: ''
+        };
+
+        problem.comments.push(data);
+
+        await api.post(`/problem/${problem._id}/comment`, data);
+
+        Alert.alert('Comentário adicionado', '', [{ text: 'Ok' }]);
+    }    
 
     return (
         <ScrollView
@@ -27,39 +76,29 @@ const DetailComplaints: React.FC = () => {
                         style={{ marginLeft: -10, marginRight: '5%' }}
                     />
                 </TouchableOpacity>
-                <Text style={styles.title}>Buracão perto do partage shopping </Text>
+                <Text style={styles.title}>{problem.title}</Text>
             </View>
             <View style={styles.imagesContainer}>
                 <ScrollView horizontal pagingEnabled>
-                    <Image
-                        style={styles.image}
-                        source={{
-                            uri:
-                                'https://amazoniasemfronteiras.com/wp-content/uploads/2017/12/Cratera-na-rua-Par%C3%A1.jpg',
-                        }}
-                    />
-                    <Image
-                        style={styles.image}
-                        source={{
-                            uri:
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRJOuxqRtTw-P-FdBfVDP4ffW2asTNTMeHkA&usqp=CAU',
-                        }}
-                    />
-                    <Image
-                        style={styles.image}
-                        source={{
-                            uri:
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHJSzA0wYyytQQeBHehcQzX7Q28raw07Za-g&usqp=CAU',
-                        }}
-                    />
+                    {
+                        problem.userImages.map((image, index) => {
+                            return (
+                                <Image
+                                    key={index + image}
+                                    style={styles.image}
+                                    source={{
+                                        uri: image,
+                                    }}
+                                />
+                            );
+                        })
+                    }
                 </ScrollView>
             </View>
 
             <View style={styles.detailsContainer}>
                 <Text style={styles.description}>
-                    O problema deve ter uma descrição concisa dos fatos que precisam ser abordados.
-                    Além disso, deve responder aos cinco Ws da metodologia 5W2H: Quem, Onde, O quê,
-                    Quando e Por quê.
+                    {problem.description}
                 </Text>
 
                 <View style={styles.locationContainer}>
@@ -69,8 +108,8 @@ const DetailComplaints: React.FC = () => {
                 <View style={styles.mapContainer}>
                     <MapView
                         initialRegion={{
-                            latitude: -27.2092052,
-                            longitude: -49.6401092,
+                            latitude: Number(problem.location.latitude),
+                            longitude: Number(problem.location.longitude),
                             latitudeDelta: 0.008,
                             longitudeDelta: 0.008,
                         }}
@@ -82,8 +121,8 @@ const DetailComplaints: React.FC = () => {
                     >
                         <Marker
                             coordinate={{
-                                latitude: -27.2092052,
-                                longitude: -49.6401092,
+                                latitude: Number(problem.location.latitude),
+                                longitude: Number(problem.location.longitude),
                             }}
                         />
                     </MapView>
@@ -100,20 +139,19 @@ const DetailComplaints: React.FC = () => {
 
             <View style={styles.imagesContainerRes}>
                 <ScrollView horizontal pagingEnabled>
-                    <Image
-                        style={styles.imageRes}
-                        source={{
-                            uri:
-                                'https://lh3.googleusercontent.com/proxy/KYtLH3Ad8kTdZ705xA4TareQZsods72lHdzGhF6SREuj_no8DwnmXSqh8eTXFOC9qoj8D0wvVYTgV38rguwyQPiCk8elhYi3TH8zrcbTAA3xyhW3eTNeO3egIcq0u6QLKm9aqKdCJ0JJtkrvzY58toRwAGeNall1pOO1oBGlYTdRThk1OwPqLFePZA',
-                        }}
-                    />
-                    <Image
-                        style={styles.imageRes}
-                        source={{
-                            uri:
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDp6Ngz9FoKOI0gZmIYvFM9tF4SDwXnMs8YA&usqp=CAU',
-                        }}
-                    />
+                    {
+                        problem.adminImages.map((image, index) => {
+                            return (
+                                <Image
+                                    key={index + image}
+                                    style={styles.imageRes}
+                                    source={{
+                                        uri: image
+                                    }}
+                                />
+                            );
+                        })
+                    }
                 </ScrollView>
             </View>
 
@@ -140,56 +178,42 @@ const DetailComplaints: React.FC = () => {
 
             <View style={styles.commentContainer}>
                 <TextInput
+                    value={comment}
+                    onChangeText={setComment}
                     placeholder="Insira um novo comentário             "
                     placeholderTextColor="#8DA1B9"
                     style={styles.input}
                 />
-                <TouchableOpacity onPress={() => {}} style={styles.iconPlane}>
+                <TouchableOpacity onPress={() => handleAddComment(problem)} style={styles.iconPlane}>
                     <FontAwesome name="paper-plane" size={24} color="#0B6E4F" />
                 </TouchableOpacity>
             </View>
 
-            <View style={styles.headerComments}>
-                <View style={styles.photoContaner}>
-                    <Image
-                        style={styles.photo}
-                        source={{
-                            uri:
-                                'https://i.pinimg.com/236x/09/cf/17/09cf1760899fc0372c67adfe4e66c446.jpg',
-                        }}
-                    />
-                </View>
-                <View>
-                    <Text style={styles.perfilText}>Lukas da Silva</Text>
-                    <Text style={styles.perfilDescription}>
-                        Olha, essa rua tá difícil de andar até a pé... Já vi até acidente de
-                        bicicleta e esse senhor prefeito não cuida em resolver isso... Já perdi 3
-                        pneus do meu carro nessa danada dessa rua desgraçada. Espero que venha fazer
-                        campanha eleitoral aqui e estoure um pneu para entender o que sofremos
-                    </Text>
-                </View>
-            </View>
-
-            <View style={styles.headerComments}>
-                <View style={styles.photoContaner}>
-                    <Image
-                        style={styles.photo}
-                        source={{
-                            uri:
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaGRvGr9Mo5xYIhGy548QvQdhQu6YJNlgjUw&usqp=CAU',
-                        }}
-                    />
-                </View>
-                <View>
-                    <Text style={styles.perfilText}>Gokuzinho da Silva</Text>
-                    <Text style={styles.perfilDescription}>
-                        Epopeia é uma narrativa que apresenta com maior qualidade os fatos
-                        originalmente contados em versos. Os elementos dessa narrativa apresentam
-                        estas características: personagens, tempo, ação, espaço. Também pode conter
-                        factos heroicos muitas vezes transcorridos durante guerras.
-                    </Text>
-                </View>
-            </View>
+            {
+                problem.comments.map((comment: { owner: string | undefined, text: string, role: string | undefined, image: string }, index) => {
+                    return (
+                        <View key={index + String(comment.owner)} style={styles.headerComments}>
+                            <View style={styles.photoContaner}>
+                                {
+                                    comment.image !== '' && 
+                                    <Image
+                                        style={styles.photo}
+                                        source={{
+                                            uri: comment.image
+                                    }}
+                                />
+                                }
+                            </View>
+                            <View>
+                                <Text style={styles.perfilText}>{comment.role}</Text>
+                                <Text style={styles.perfilDescription}>
+                                    {comment.text}
+                                </Text>
+                            </View>
+                        </View>
+                    );
+                })
+            }
         </ScrollView>
     );
 };

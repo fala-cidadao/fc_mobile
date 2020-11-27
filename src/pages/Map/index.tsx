@@ -21,13 +21,25 @@ interface IProblem {
 interface ILocation {
     latitude: number;
     longitude: number;
-}
+};
 
 const Map: React.FC = () => {
     const navigation = useNavigation();
     const [openFilter, setOpenFilter] = useState(false);
     const [initialPosition,setInitialPosition] = useState<[number, number]>([0, 0]);
     const [problems, setProblem] = useState<IProblem[]>([]);
+    const [filteredProblems, setFilteredProblems] = useState<IProblem[]>([]);
+
+    const filtros: { [label: string]: string } = {
+        "safety": 'Segurança',
+        "energy": 'Energia e Iluminação',
+        "education": 'Educação',
+        "garbage": 'Coleta de Lixo',
+        "health": 'Saúde',
+        "infrastruture": 'Infraestrutura e Mobilidade',
+        "sewer": 'Saneamento Básico e Fornecimento de água',
+        "other": 'Outro'
+    };
     
     const options = [
         'Segurança',
@@ -77,15 +89,16 @@ const Map: React.FC = () => {
     useEffect(() => {
         api.get('problem').then(response => {
           setProblem(response.data);
-        })    
+          setFilteredProblems(response.data);
+        });
     }, []); 
 
     function handleNavigateToRegisterComplaints() {
         navigation.navigate('SelectMap');
     }
 
-    function handleNavigateToDetailComplaints() {
-        navigation.navigate('DetailComplaints');
+    function handleNavigateToDetailComplaints(problem: IProblem) {
+        navigation.navigate('DetailComplaints', { problem });
     }
 
     function handleStateChange(state: { open: boolean }) {
@@ -93,7 +106,12 @@ const Map: React.FC = () => {
     }
 
     function search(area: string) {
-        // TODO REALIZAR A BUSCA
+        const filteredProblems = problems.filter(problem => {
+            console.log(problem.category, filtros[problem.category], area);
+            console.log(filtros[problem.category] === area);
+            return filtros[problem.category] === area;
+        });
+        setProblem(filteredProblems);
     }
 
     
@@ -114,13 +132,14 @@ const Map: React.FC = () => {
                                 longitudeDelta: 0.008,
                             }}
                         >
-                        {problems.map(problem => (
+                        {filteredProblems.map(problem => (
                             <Marker
                                 key ={String(problem._id)}
                                 coordinate={{
                                     latitude: Number(problem.location.latitude),
                                     longitude: Number(problem.location.longitude),
                                 }}
+                                onPress={() => handleNavigateToDetailComplaints(problem)}
                             >   
                                 <View style={styles.mapMarkerContainer}>
                                     <Text style={[styles.mapMarkerTitle, { color: markerColors[problem.category] }]}>{problem.title}</Text>
